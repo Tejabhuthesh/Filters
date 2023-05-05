@@ -1,0 +1,245 @@
+<mvc:View
+    controllerName="idfilters.zfilters.controller.View2"
+    height="100%"
+    width="100%"
+    displayBlock="true"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:u="sap.ui.unified"
+>
+    <m:Page
+        id="page"
+        title="{i18n>title}"
+        showHeader="true"
+        enableScrolling="true"
+        class="sapUiContentPadding"  showNavButton="true"
+        navButtonPress="onNavBack"
+    
+       
+       > <f:DynamicPage
+            id="dynamicPageId"
+            showFooter="true"
+            preserveHeaderStateOnScroll="true" 
+        >
+            <f:title>
+                <f:DynamicPageTitle />
+            </f:title>
+
+            <f:header>
+                <f:DynamicPageHeader pinnable="true">
+                    <m:OverflowToolbar style="Clear">
+                        <m:ToolbarSpacer />
+                        <m:SearchField
+                            liveChange="onSearch"
+                            width="20%"
+                        />
+
+                        <m:Button
+                            press="rightarrow"
+                            type="Transparent"
+                            icon="sap-icon://navigation-right-arrow"
+                        />
+                    </m:OverflowToolbar>
+                    <filterbar:FilterBar
+                        search="onPressGo"
+                        useToolbar="true"
+                        showGoOnFB="true"
+                    >
+                        <!-- <m:SearchField liveChange="onSearch" width="80%"/> -->
+
+                        <filterbar:filterGroupItems>
+                            <filterbar:FilterGroupItem
+                                groupName="G1"
+                                label="Name"
+                                groupTitle="group1"
+                                name="name1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:MultiComboBox
+                                        id="idname"
+                                        selectionChange="handleSelectionChangeName"
+                                        selectionFinish="handleSelectionFinish"
+                                        width="15%"
+                                        items="{
+			            	path: 'Data1>/results',
+				            sorter: { path: 'Name' } }"
+                                    >
+                                        <core:Item
+                                            key="001"
+                                            text="{Data1>Name}"
+                                        />
+                                    </m:MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+
+                            <filterbar:FilterGroupItem
+                                groupName="G2"
+                                label="Zemprole"
+                                groupTitle="group2"
+                                name="name2"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:MultiComboBox
+                                        id="idemprole"
+                                        selectionChange="handleSelectionChangeRole"
+                                        selectionFinish="handleSelectionFinish"
+                                        width="15%"
+                                        items="{
+				    path: 'Data1>/results',
+				    sorter: { path: 'Zemprole' } }"
+                                    >
+                                        <core:Item
+                                            key="002"
+                                            text="{Data1>Zemprole}"
+                                        />
+                                    </m:MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+
+                            <filterbar:FilterGroupItem
+                                groupName="G3"
+                                label="Zgender"
+                                groupTitle="group3"
+                                name="name3"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:MultiComboBox
+                                        id="idgender"
+                                        selectionChange="handleSelectionChangeGender"
+                                        selectionFinish="handleSelectionFinish"
+                                        width="15%"
+                                        items="{
+				    path: 'Data1>/results',
+				    sorter: { path: 'Zgender' } }"
+                                    >
+                                        <core:Item
+                                            key="003"
+                                            text="{Data1>Zgender}"
+                                        />
+                                    </m:MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+
+                            <filterbar:FilterGroupItem
+                                groupName="G4"
+                                label="Zcity"
+                                groupTitle="group4"
+                                name="name4"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:MultiComboBox
+                                        id="idcity"
+                                        selectionChange="handleSelectionChangeCity"
+                                        selectionFinish="handleSelectionFinish"
+                                        width="15%"
+                                        items="{
+				    path: 'Data1>/results',
+				    sorter: { path: 'Zcity' } }"
+                                    >
+                                        <core:Item
+                                            key="003"
+                                            text="{Data1>Zcity}"
+                                        />
+                                    </m:MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+
+                            <filterbar:FilterGroupItem
+                                groupName="G5"
+                                label="Znumber"
+                                groupTitle="group5"
+                                name="name5"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:MultiComboBox
+                                        id="idnumber"
+                                        selectionChange="handleSelectionChangeNumber"
+                                        selectionFinish="handleSelectionFinish"
+                                        width="15%"
+                                        items="{
+				    path: 'Data1>/results',
+				    sorter: { path: 'Znumber' } }"
+                                    >
+                                        <core:Item
+                                            key="004"
+                                            text="{Data1>Znumber}"
+                                        />
+                                    </m:MultiComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                        </filterbar:filterGroupItems>
+                    </filterbar:FilterBar>
+                </f:DynamicPageHeader>
+            </f:header>
+            <f:content>
+                <Table
+                    id="idProductsTable"
+                    rows="{Data1>/results}"
+                    visibleRowCount="9"
+                    alternateRowColors="true"
+                    enableColumnReordering="true"
+                    columnHeaderHeight="30"
+                >
+                    <extension />
+                    <columns>
+                        <Column>
+                            <m:Label text="Name" />
+                            <template>
+                                <m:Text
+                                    text="{Data1>Name}"
+                                    wrapping="true"
+                                />
+                            </template>
+                        </Column>
+                        <Column width="auto">
+                            <m:Label text="Zemprole" />
+                            <template>
+                                <m:Text
+                                    text="{Data1>Zemprole}"
+                                    wrapping="false"
+                                />
+                            </template>
+                        </Column>
+                        <Column>
+                            <m:Label text="Zgender" />
+                            <template>
+                                <m:Text
+                                    text="{Data1>Zgender}"
+                                    wrapping="false"
+                                />
+                            </template>
+                        </Column>
+                        <Column>
+                            <m:Label text="Zcity" />
+                            <template>
+                                <m:Text
+                                    text="{Data1>Zcity}"
+                                    wrapping="false"
+                                />
+                            </template>
+                        </Column>
+                        <Column>
+                            <m:Label text="Znumber" />
+                            <template>
+                                <m:Text text="{Data1>Znumber}" />
+                            </template>
+                        </Column>
+                    </columns>
+                </Table>
+            </f:content>
+            <!-- <f:footer>
+         <m:Button text="Next" width="10rem"/>
+        </f:footer> -->
+        </f:DynamicPage>
+    </m:Page>
+</mvc:View>

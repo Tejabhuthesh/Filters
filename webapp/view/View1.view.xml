@@ -1,0 +1,147 @@
+<mvc:View
+    controllerName="idfilters.zfilters.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    height="100%"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <headerContent>
+            <Button
+                press="rightarrow"
+                type="Transparent"
+                icon="sap-icon://navigation-right-arrow"
+            />
+        </headerContent>
+        <f:DynamicPage
+            id="dynamicPageId"
+            preserveHeaderStateOnScroll="false"
+        >
+            <f:title>
+                <f:DynamicPageTitle />
+            </f:title>
+
+            <f:header>
+                <f:DynamicPageHeader pinnable="true">
+                    <Toolbar>
+                        <SearchField
+                            liveChange="onSearch"
+                            width="40%"
+                        />
+                        <ToolbarSpacer />
+                        <Button
+                            id="go1"
+                            text="Go"
+                            press="ongo1"
+                            type="Emphasized"
+                        />
+                        <Button
+                            id="filter"
+                            icon="sap-icon://filter"
+                            text="Filters"
+                            press="onfilter"
+                            type="Transparent"
+                        />
+                    </Toolbar>
+                    <MultiInput
+                        width="15%"
+                        showClearIcon="true"
+                        id="idname"
+                        placeholder="Enter Name1"
+                        valueHelpRequest="onnamepress "
+                    />
+                    <MultiInput
+                        width="15%"
+                        showClearIcon="true"
+                        id="idrole"
+                        placeholder="Enter Zemprole "
+                        valueHelpRequest="onnamepress "
+                    />
+                    <MultiInput
+                        width="15%"
+                        showClearIcon="true"
+                        id="idgender"
+                        placeholder="Enter Zgender"
+                        valueHelpRequest="onnamepress "
+                    />
+                    <MultiInput
+                        width="15%"
+                        showClearIcon="true"
+                        id="idcity"
+                        placeholder="Enter Zcity"
+                        valueHelpRequest="onnamepress "
+                    />
+                    <MultiInput
+                        width="15%"
+                        showClearIcon="true"
+                        id="idnumber"
+                        placeholder="Enter Znumber"
+                        valueHelpRequest="onnamepress "
+                    />
+                </f:DynamicPageHeader>
+            </f:header>
+            <f:content>
+                <ScrollContainer
+                    height="100%"
+                    width="100%"
+                    vertical="true"
+                    focusable="true"
+                >
+                    <Table
+                        width="80rem"
+                        id="idProductsTable"
+                        inset="true"
+                        selectionChange="handleSelectionChange"
+                        headerText="EMPLOYE DETAILS"
+                        visible="true"
+                        alternateRowColors="true"
+                        items="{ path: 'Data1>/results', sorter: {
+				                                            path: 'Name',
+                                                              group: false }  }"
+                    >
+                        <columns>
+                            <Column width="auto">
+                                <Text text="Name" />
+                            </Column>
+
+                            <Column>
+                                <Text text="Zemprole" />
+                            </Column>
+
+                            <Column>
+                                <Text text="Zgender" />
+                            </Column>
+
+                            <Column>
+                                <Text text="Zcity" />
+                            </Column>
+
+                            <Column>
+                                <Text text="Znumber" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                type="Active"
+                                id="colss"
+                            >
+                                <cells>
+                                    <Text text="{Data1>Name}" />
+                                    <Text text="{Data1>Zemprole}" />
+                                    <Text text="{Data1>Zgender}" />
+                                    <Text text="{Data1>Zcity}" />
+                                    <Text text="{Data1>Znumber}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </ScrollContainer>
+            </f:content>
+        </f:DynamicPage>
+    </Page>
+</mvc:View>
