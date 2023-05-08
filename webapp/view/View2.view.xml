@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:uxap="sap.uxap"
     controllerName="idfilters.zfilters.controller.View2"
     height="100%"
     width="100%"
@@ -21,7 +21,14 @@
         navButtonPress="onNavBack"
     
        
-       > <f:DynamicPage
+       >
+       <m:headerContent> <m:Button
+                            press="rightarrow"
+                            type="Transparent"
+                            icon="sap-icon://navigation-right-arrow"
+                        />
+       </m:headerContent>
+        <f:DynamicPage
             id="dynamicPageId"
             showFooter="true"
             preserveHeaderStateOnScroll="true" 
@@ -37,12 +44,6 @@
                         <m:SearchField
                             liveChange="onSearch"
                             width="20%"
-                        />
-
-                        <m:Button
-                            press="rightarrow"
-                            type="Transparent"
-                            icon="sap-icon://navigation-right-arrow"
                         />
                     </m:OverflowToolbar>
                     <filterbar:FilterBar
@@ -102,6 +103,7 @@
                                     </m:MultiComboBox>
                                 </filterbar:control>
                             </filterbar:FilterGroupItem>
+                           
 
                             <filterbar:FilterGroupItem
                                 groupName="G3"
@@ -116,13 +118,15 @@
                                         selectionChange="handleSelectionChangeGender"
                                         selectionFinish="handleSelectionFinish"
                                         width="15%"
-                                        items="{
-				    path: 'Data1>/results',
-				    sorter: { path: 'Zgender' } }"
+                                        
                                     >
                                         <core:Item
                                             key="003"
-                                            text="{Data1>Zgender}"
+                                            text="Male"
+                                        />
+                                         <core:Item
+                                            key="004"
+                                            text="Female"
                                         />
                                     </m:MultiComboBox>
                                 </filterbar:control>
@@ -182,17 +186,17 @@
                 </f:DynamicPageHeader>
             </f:header>
             <f:content>
-                <Table
+                <Table 
                     id="idProductsTable"
                     rows="{Data1>/results}"
                     visibleRowCount="9"
                     alternateRowColors="true"
                     enableColumnReordering="true"
-                    columnHeaderHeight="30"
-                >
+                    columnHeaderHeight="60" >
                     <extension />
                     <columns>
-                        <Column>
+                        <Column 	filterProperty="Name"
+                        sortProperty="Name">
                             <m:Label text="Name" />
                             <template>
                                 <m:Text
@@ -201,7 +205,8 @@
                                 />
                             </template>
                         </Column>
-                        <Column width="auto">
+                        <Column width="auto" filterProperty="Zemprole"
+                        sortProperty="Zemprole">
                             <m:Label text="Zemprole" />
                             <template>
                                 <m:Text
@@ -210,7 +215,8 @@
                                 />
                             </template>
                         </Column>
-                        <Column>
+                        <Column filterProperty="Zgender"
+                        sortProperty="Zgender">
                             <m:Label text="Zgender" />
                             <template>
                                 <m:Text
@@ -219,7 +225,8 @@
                                 />
                             </template>
                         </Column>
-                        <Column>
+                        <Column filterProperty="Zcity"
+                        sortProperty="Zcity">
                             <m:Label text="Zcity" />
                             <template>
                                 <m:Text
@@ -228,7 +235,8 @@
                                 />
                             </template>
                         </Column>
-                        <Column>
+                        <Column filterProperty="Znumber"
+                        sortProperty="Znumber">
                             <m:Label text="Znumber" />
                             <template>
                                 <m:Text text="{Data1>Znumber}" />

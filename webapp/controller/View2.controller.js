@@ -241,8 +241,10 @@ sap.ui.define([
             // },
             onPressGo: function (evt) {
                 var that = this;
-                var oBinding = that.getView().byId("idProductsTable").getBinding("rows"),
-                    oFinalFilter = [],
+                var oBinding = that.getView().byId("idProductsTable").getBinding("rows");
+            //    var  oSorter = new sap.ui.model.Sorter('Name', false);
+            //     oBinding.sorters([oSorter]);
+                 var  oFinalFilter = [],
                     aName = [],
                     aRole = [],
                     aGender = [],
@@ -353,6 +355,7 @@ sap.ui.define([
                     //     })
                     // );
                     oBinding.filter(oFinalFilter);
+                   
                 }
             },
             onnamepress: function (evt) {

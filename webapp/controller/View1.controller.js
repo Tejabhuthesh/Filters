@@ -18,12 +18,14 @@ sap.ui.define([
                 that.byId("idcity").setVisible(false);
                 that.byId("idnumber").setVisible(false);
 
+
+
                 var oModel = new sap.ui.model.odata.ODataModel("/sap/opu/odata/sap/ZEMPLOYEE_EEE_SRV/");
 
                 oModel.read("/userSet", {
                     success: function (odata) {
                         var oModel1 = new sap.ui.model.json.JSONModel();
-                        debugger;
+
                         oModel1.setData(odata);
                         that.getView().setModel(oModel1, "Data1");
                         // alert("Success");
@@ -42,10 +44,7 @@ sap.ui.define([
                 oMultiInput1.setTokens([
                     new Token({ text: "Amit", key: "0001" }),
                     new Token({ text: "Anita", key: "0002" })
-                    // new Token({text: "Token 3", key: "0003"}),
-                    // new Token({text: "Token 4", key: "0004"}),
-                    // new Token({text: "Token 5", key: "0005"}),
-                    // new Token({text: "Token 6", key: "0006"})
+                  
                 ]);
                 // add validator
                 var fnValidator = function (args) {
@@ -63,14 +62,12 @@ sap.ui.define([
                     child5: false
                 });
                 this.getView().setModel(this.oModel);
+
                 var oMultiInput2 = that.getView().byId("idgender");
                 oMultiInput2.setTokens([
-                    new Token({ text: "Male", key: "0001" }),
-                    new Token({ text: "Female", key: "0002" })
-                    // new Token({text: "Token 3", key: "0003"}),
-                    // new Token({text: "Token 4", key: "0004"}),
-                    // new Token({text: "Token 5", key: "0005"}),
-                    // new Token({text: "Token 6", key: "0006"})
+                    // new Token({ text: "Male", key: "0001" }),
+                    // new Token({ text: "Female", key: "0002" })
+                 
                 ]);
                 // add validator
                 var fnValidator = function (args) {
@@ -89,7 +86,83 @@ sap.ui.define([
                 });
                 this.getView().setModel(this.oModel);
 
+
+                var oMultiInput3 = that.getView().byId("idrole");
+                oMultiInput3.setTokens([
+                    // new Token({ text: "Abap", key: "0001" }),
+                    // new Token({ text: "Driver", key: "0002" })
+                   
+                ]);
+                // add validator
+                var fnValidator = function (args) {
+                    var text = args.text;
+
+                    return new Token({ key: text, text: text });
+                };
+
+                oMultiInput3.addValidator(fnValidator);
+                this.oModel = new JSONModel({              //Chombo box
+                    child1: false,
+                    child2: false,
+                    child3: false,
+                    child4: false,
+                    child5: false
+                });
+                this.getView().setModel(this.oModel);
+
+                var oMultiInput4 = that.getView().byId("idcity");
+                oMultiInput4.setTokens([
+                    // new Token({ text: "Andra pradesh", key: "0001" }),
+                    // new Token({ text: "Pune", key: "0002" })
+                   
+                ]);
+                // add validator
+                var fnValidator = function (args) {
+                    var text = args.text;
+
+                    return new Token({ key: text, text: text });
+                };
+
+                oMultiInput4.addValidator(fnValidator);
+                this.oModel = new JSONModel({              //Chombo box
+                    child1: false,
+                    child2: false,
+                    child3: false,
+                    child4: false,
+                    child5: false
+                });
+                this.getView().setModel(this.oModel);
+
+                var oMultiInput5 = that.getView().byId("idnumber");
+                oMultiInput5.setTokens([
+                    // new Token({ text: "", key: "0001" }),
+                    // new Token({ text: "", key: "0002" })
+                   
+                ]);
+                // add validator
+                var fnValidator = function (args) {
+                    var text = args.text;
+
+                    return new Token({ key: text, text: text });
+                };
+
+                oMultiInput5.addValidator(fnValidator);
+                this.oModel = new JSONModel({              //Chombo box
+                    child1: false,
+                    child2: false,
+                    child3: false,
+                    child4: false,
+                    child5: false
+                });
+                this.getView().setModel(this.oModel);
+
             },
+            onAfterRendering: function () {
+                // this.byId("idvalue1").setVisible(false);
+
+            },
+
+
             onParentClicked: function (oEvent) {
                 var bSelected = oEvent.getParameter("selected");
                 this.oModel.setData({ child1: bSelected, child2: bSelected, child3: bSelected, child4: bSelected, child5: bSelected });
@@ -119,92 +192,292 @@ sap.ui.define([
                 }
                 oBinding.filter(ofilters);
             },
+            handleSelectionChangeCombobox: function (evt) {
+                var that = this;
+                var FilterOperators = evt.mParameters.selectedItem.mProperties.text;
+
+                var value2 = that.byId("idbetween").getText();
+                if (FilterOperators === value2) {
+                    that.byId("idvalue1").setVisible(true);  
+                }
+                else {
+                    that.byId("idvalue1").setVisible(false);
+                 
+                }
+            },
+
+
             ongo: function (evt) {
 
                 // var sQuery = that.getView().byId("idname").mProperties._semanticFormValue;
                 var that = this;
                 var oTable = that.getView().byId("idProductsTable");
                 var oBinding = oTable.getBinding("items"),
+                    //     oFinalFilter = [],
+                    //     aName = [],
+
+                    //     Name = that.byId("idname").getTokens();
+                    // debugger;
+
+
+                    // if (!Name.length > 0
+
+                    // ) {
+                    //     !oBinding.filter([]);
+                    // } else {
+                    //     for (var i = 0; i < Name.length; i++) {
+                    //         aName.push(new sap.ui.model.Filter({
+                    //             path: "Name",
+                    //             operator: FilterOperators,
+                    //             value1: Name[i].getText(),
+                    //             value2: value2
+                    //         }));
+                    //     }
+
+                    //     oFinalFilter.push(new sap.ui.model.Filter({
+                    //         and: false,
+                    //         filters: [
+                    //             new sap.ui.model.Filter({
+                    //                 and: false,
+                    //                 filters: aName
+                    //             })
+                    //         ]
+                    //     }));
+                    //     oBinding.filter(oFinalFilter);
+                    // }
                     oFinalFilter = [],
                     aName = [],
+                    aRole = [],
+                    aGender = [],
+                    aCity = [],
+                    aNumber = [];
 
-                    Name = this.byId("idname").getTokens();
+                var Name = that.byId("idname").getTokens();
+                var Role = that.byId("idrole").getTokens();
+                var Gender = that.byId("idgender").getTokens();
+                var City = that.byId("idcity").getTokens();
+                var Number = that.byId("idnumber").getTokens();
 
-                // Name = this.byId("idname") .getSelectedItems();
-                if (!Name.length > 0
+                var FilterOperators = that.byId("idcomboBox").mProperties.value;
+                var value2 = that.byId("idvalue1").getValue();
 
-                ) {
-                    !oBinding.filter([]);
-                } else {
+                
+
                     for (var i = 0; i < Name.length; i++) {
                         aName.push(new sap.ui.model.Filter({
                             path: "Name",
-                            operator: FilterOperator.EQ,
-                            value1: Name[i].getText()
+                            operator: FilterOperators,
+                            value1: Name[i].getText(),
+                            value2: value2
+                        }));
+                    }
+                    for (var i = 0; i < Role.length; i++) {
+                        aRole.push(new sap.ui.model.Filter({
+                            path: "Zemprole",
+                            operator: FilterOperators,
+                            value1: Role[i].getText(),
+                            value2: value2
+                        }));
+                    }
+                    for (var i = 0; i < Gender.length; i++) {
+                        aGender.push(new sap.ui.model.Filter({
+                            path: "Zgender",
+                            operator: FilterOperators,
+                            value1: Gender[i].getText(),
+                            value2: value2
+                        }));
+                    }
+                    for (var i = 0; i < City.length; i++) {
+                        aCity.push(new sap.ui.model.Filter({
+                            path: "Zcity",
+                            operator: FilterOperators,
+                            value1: City[i].getText(),
+                            value2: value2
+                        }));
+                    }
+                    for (var i = 0; i < Number.length; i++) {
+                        aNumber.push(new sap.ui.model.Filter({
+                            path: "Znumber",
+                            operator: FilterOperators,
+                            value1: Number[i].getText(),
+                            value2: value2
                         }));
                     }
 
-                    oFinalFilter.push(new sap.ui.model.Filter({
-                        and: false,
-                        filters: [
-                            new sap.ui.model.Filter({
-                                and: false,
-                                filters: aName
-                            })
-                        ]
-                    }));
+                    if (aName.length > 0) {
+                        oFinalFilter.push(new sap.ui.model.Filter({
+                            and: false,
+                            filters: aName,
+                        }));
+                    }
+                    if (aRole.length > 0) {
+                        oFinalFilter.push(new sap.ui.model.Filter({
+                            and: false,
+                            filters: aRole,
+                        }));
+                    }
+                    if (aGender.length > 0) {
+                        oFinalFilter.push(new sap.ui.model.Filter({
+                            and: false,
+                            filters: aGender,
+                        }));
+                    }
+                    if (aCity.length > 0) {
+                        oFinalFilter.push(new sap.ui.model.Filter({
+                            and: false,
+                            filters: aCity,
+                        }));
+                    }
+                    if (aNumber.length > 0) {
+                        oFinalFilter.push(new sap.ui.model.Filter({
+                            and: false,
+                            filters: aNumber,
+                        }));
+                    }
+
+
                     oBinding.filter(oFinalFilter);
-                }
 
                 this.byId("idDialog1").close();
             },
 
             ongo1: function (evt) {
-
-
                 var that = this;
                 var oTable = that.getView().byId("idProductsTable");
                 var oBinding = oTable.getBinding("items"),
-                    oFinalFilter = [],
-                    aGender = [],
-                    aName = [],
+                
+                  oFinalFilter = [],
+                   aName = [],
+                   aRole = [],
+                   aGender = [],
+                   aCity = [],
+                   aNumber = [];
 
-                    Name = this.byId("idname").getTokens(),
-                    Gender = this.byId("idgender").getTokens();
-                if (!Gender.length > 0) {
-                    !oBinding.filter([]);
-                } else {
+               var Name = that.byId("idname").getTokens();
+               var Role = that.byId("idrole").getTokens();
+               var Gender = that.byId("idgender").getTokens();
+               var City = that.byId("idcity").getTokens();
+               var Number = that.byId("idnumber").getTokens();
 
-                    for (var i = 0; i < Gender.length; i++) {
-                        aGender.push(new sap.ui.model.Filter({
-                            path: "Zgender",
-                            operator: FilterOperator.EQ,
-                            value1: Gender[i].getText()
-                        }));
-                    }
-                    for (var i = 0; i < Name.length; i++) {
-                        aName.push(new sap.ui.model.Filter({
-                            path: "Name",
-                            operator: FilterOperator.EQ,
-                            value1: Name[i].getText()
-                        }));
-                    }
-                    oFinalFilter.push(
+               if (!Name.length > 0 &&
+                   !Role.length > 0 &&
+                   !Gender.length > 0 &&
+                   !City.length > 0 &&
+                   !Number.length > 0) {
+                   !oBinding.filter([]);
+               } else {
+
+                   for (var i = 0; i < Name.length; i++) {
+                       aName.push(new sap.ui.model.Filter({
+                           path: "Name",
+                           operator: 'EQ',
+                           value1: Name[i].getText()
+                       }));
+                   }
+                   for (var i = 0; i < Role.length; i++) {
+                       aRole.push(new sap.ui.model.Filter({
+                           path: "Zemprole",
+                           operator: 'EQ',
+                           value1: Role[i].getText()
+                       }));
+                   }
+                   for (var i = 0; i < Gender.length; i++) {
+                       aGender.push(new sap.ui.model.Filter({
+                           path: "Zgender",
+                           operator: 'EQ',
+                           value1: Gender[i].getText()
+                       }));
+                   }
+                   for (var i = 0; i < City.length; i++) {
+                       aCity.push(new sap.ui.model.Filter({
+                           path: "Zcity",
+                           operator: 'EQ',
+                           value1: City[i].getText()
+                       }));
+                   }
+                   for (var i = 0; i < Number.length; i++) {
+                       aNumber.push(new sap.ui.model.Filter({
+                           path: "Znumber",
+                           operator: 'EQ',
+                           value1: Number[i].getText()
+                       }));
+                   }
+                 
+                   if(aName.length > 0){
+                       oFinalFilter.push(new sap.ui.model.Filter({
+                           and: false,
+                           filters: aName,
+                         }));
+                   }
+                   if(aRole.length > 0){
+                       oFinalFilter.push(new sap.ui.model.Filter({
+                           and: false,
+                           filters: aRole,
+                         }));
+                   }
+                   if(aGender.length > 0){
+                       oFinalFilter.push(new sap.ui.model.Filter({
+                           and: false,
+                           filters: aGender,
+                         }));
+                   }
+                   if(aCity.length > 0){
+                       oFinalFilter.push(new sap.ui.model.Filter({
+                           and: false,
+                           filters: aCity,
+                         }));
+                   }
+                   if(aNumber.length > 0){
+                       oFinalFilter.push(new sap.ui.model.Filter({
+                           and: false,
+                           filters: aNumber,
+                         }));
+                   }
+                  
+                
+                   oBinding.filter(oFinalFilter);
+                  
+               }
+                //     oFinalFilter = [],
+                //     aGender = [],
+                //     aName = [],
+
+                //     Name = this.byId("idname").getTokens(),
+                //     Gender = this.byId("idgender").getTokens();
+                // if (!Gender.length > 0) {
+                //     !oBinding.filter([]);
+                // } else {
+
+                //     for (var i = 0; i < Gender.length; i++) {
+                //         aGender.push(new sap.ui.model.Filter({
+                //             path: "Zgender",
+                //             operator: FilterOperator.EQ,
+                //             value1: Gender[i].getText()
+                //         }));
+                //     }
+                //     for (var i = 0; i < Name.length; i++) {
+                //         aName.push(new sap.ui.model.Filter({
+                //             path: "Name",
+                //             operator: FilterOperator.EQ,
+                //             value1: Name[i].getText()
+                //         }));
+                //     }
+                //     oFinalFilter.push(
 
 
-                        new sap.ui.model.Filter({
-                            and: false,
-                            filters: aGender
-                        }),
-                        new sap.ui.model.Filter({
-                            and: false,
-                            filters: aName
-                        })
-                    );
-                    oBinding.filter(oFinalFilter);
-                }
+                //         new sap.ui.model.Filter({
+                //             and: false,
+                //             filters: aGender
+                //         }),
+                //         new sap.ui.model.Filter({
+                //             and: false,
+                //             filters: aName
+                //         })
+                //     );
+                //     oBinding.filter(oFinalFilter);
+                // }
 
-                // this.byId("idDialog1").close();
+               
             },
 
             onfilter: function () {

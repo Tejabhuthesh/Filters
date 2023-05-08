@@ -12,6 +12,10 @@
         title="{i18n>title}"
     >
         <headerContent>
+         <!-- <SearchField
+                            liveChange="onSearch"
+                            width="80%"
+                        /> -->
             <Button
                 press="rightarrow"
                 type="Transparent"
@@ -31,7 +35,7 @@
                     <Toolbar>
                         <SearchField
                             liveChange="onSearch"
-                            width="40%"
+                            width="30%"
                         />
                         <ToolbarSpacer />
                         <Button
@@ -92,7 +96,7 @@
                     vertical="true"
                     focusable="true"
                 >
-                    <Table
+                    <Table sticky="ColumnHeaders"
                         width="80rem"
                         id="idProductsTable"
                         inset="true"
